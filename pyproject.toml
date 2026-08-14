@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "matrix-registration"
-version = "1.0.1"
+version = "1.0.2"
 description = "token based matrix registration app (maintained fork, modernized for current Python/Flask)"
 readme = "README.md"
 requires-python = ">=3.11"
