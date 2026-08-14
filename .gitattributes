@@ -1,0 +1,10 @@
+# Normalize all text to LF so a Windows checkout never shifts served-asset bytes
+# or breaks shebangs on Linux.
+* text=auto eol=lf
+
+# Binary assets: never touched by line-ending normalization.
+*.woff2 binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.ico   binary

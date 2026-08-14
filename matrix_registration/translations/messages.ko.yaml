@@ -1,0 +1,29 @@
+weblate:
+  server_registration: "{{ server_name }} 등록"
+  register_account: "{{ server_name }}에서 계정 등록"
+  requires_token: "등록하려면 비밀 토큰이 필요합니다"
+  requires_username_and_password: >
+    등록에 이메일은 필요하지 않으며, 사용자 이름과 {{ pw_length }}자보다 긴
+    비밀번호만 있으면 됩니다.
+  username: "사용자 이름"
+  password: "비밀번호"
+  confirm: "비밀번호 확인"
+  token: "토큰"
+  register: "등록"
+  click_to_login: "로그인하려면 여기를 클릭하세요:"
+  choose_client: "또는 여기에서 다른 여러 클라이언트 중 하나를 선택하세요:"
+  username_format: "형식: @사용자이름:{{ server_name }}"
+  case_sensitive: "대소문자를 구분합니다, 예: SardineImpactReport"
+  password_too_short: "최소 {{ pw_length }}자 이상이어야 합니다"
+  password_do_not_match: 비밀번호가 일치하지 않습니다
+  error: "오류"
+  error_long: "등록하는 중에 오류가 발생했습니다."
+  internal_error: "내부 서버 오류!"
+  contact: "이 문제에 대해 서버 관리자에게 문의하세요."
+  token_error: "토큰 오류"
+  password_error: "비밀번호 오류"
+  username_error: "사용자 이름 오류"
+  homeserver_error: "홈서버 오류"
+  welcome: "환영합니다"
+  account_creation_message: "계정이 생성되었습니다. Element 클라이언트를 사용하여 로그인하세요."
+  element_client: "Element 클라이언트"

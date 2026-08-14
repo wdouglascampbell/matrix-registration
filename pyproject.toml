@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "matrix-registration"
+version = "1.0.0"
+description = "token based matrix registration app (maintained fork, modernized for current Python/Flask)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Jona Abdinghoff (ZerataX)" },
+]
+maintainers = [
+    { name = "Doug Campbell (wdouglascampbell)" },
+]
+keywords = ["matrix", "registration", "synapse"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Topic :: Communications :: Chat",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+
+# Modernized dependency set: current, non-deprecated majors (Flask 3, SQLAlchemy
+# 2, Flask-SQLAlchemy 3, flask-limiter 3, WTForms 3). Floors are the first
+# release of each current major; the container build freezes an exact, mutually
+# compatible closure into requirements.lock from the first green build.
+dependencies = [
+    "Flask>=3.0",
+    "Flask-SQLAlchemy>=3.1",
+    "SQLAlchemy>=2.0",
+    "flask-cors>=5.0",
+    "Flask-HTTPAuth>=4.8",
+    "Flask-Limiter>=3.5",
+    "PyYAML>=6.0",
+    "jsonschema>=4.20",
+    "requests>=2.31",
+    "waitress>=3.0",
+    "WTForms>=3.1",
+]
+
+[project.optional-dependencies]
+postgres = ["psycopg2-binary>=2.9"]
+testing = ["parameterized>=0.9", "pytest>=8.0"]
+
+[project.urls]
+Homepage = "https://github.com/wdouglascampbell/matrix-registration"
+"Upstream (archived)" = "https://github.com/zeratax/matrix-registration"
+
+[project.scripts]
+matrix-registration = "matrix_registration.app:cli"
+
+[tool.setuptools]
+packages = ["matrix_registration"]
+
+[tool.setuptools.package-data]
+matrix_registration = [
+    "*.txt",
+    "*.json",
+    "translations/*.yaml",
+    "templates/*.html",
+    "static/css/*.css",
+    "static/fonts/*.woff2",
+    "static/images/*.jpg",
+    "static/images/*.png",
+    "static/images/*.ico",
+]
