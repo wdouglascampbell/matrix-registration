@@ -1,6 +1,8 @@
+# Defined before the submodule imports below so __version__ is always available
+# even if a submodule references it during package initialization.
+__version__ = "1.0.0"
+name = "matrix_registration"
+
 from . import api
 from . import tokens
 from . import config
-
-__version__ = "0.9.2.dev2"
-name = "matrix_registration"

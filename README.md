@@ -1,4 +1,4 @@
-# matrix-registration (maintained fork)
+# matrix-registration
 
 A simple Python application enabling token-based registration for Matrix servers.
 
@@ -32,13 +32,16 @@ the Flask CLI wiring, and the SQLAlchemy 2.0 session/query forms). The
 self-service registration page and its translations are preserved.
 
 Full credit for the original application goes to Jona Abdinghoff (ZerataX) and the
-upstream contributors.
+upstream contributors. This fork is maintained by Doug Campbell
+([wdouglascampbell](https://github.com/wdouglascampbell)).
 
 ## Setup
 
 Install from a checkout:
 
 ```bash
+git clone https://github.com/wdouglascampbell/matrix-registration.git
+cd matrix-registration
 pip install .
 ```
 
@@ -61,6 +64,7 @@ Usage: matrix-registration [OPTIONS] COMMAND [ARGS]...
   a token based matrix registration app
 
 Options:
+  --version           Show the version and exit.
   --config-path TEXT  specifies the config file to be used
   -h, --help          Show this message and exit.
 
@@ -127,4 +131,5 @@ The registration page auto-selects a language from the browser (`?lang=` /
 ## License
 
 MIT, unchanged from upstream. See [LICENSE](/LICENSE) (Copyright (c) 2018 Jona
-Abdinghoff and contributors).
+Abdinghoff (ZerataX) and contributors; Copyright (c) 2026 Doug Campbell
+(wdouglascampbell) for the maintained fork).

@@ -46,7 +46,17 @@ def create_app(config_path="config.yaml", testing=False):
     return app
 
 
+def _version() -> str:
+    # Read from the package __version__ (the single source, in __init__.py). Done
+    # lazily here rather than as a top-level import to avoid a circular import
+    # (__init__ imports this module's package siblings at load time).
+    import matrix_registration
+
+    return matrix_registration.__version__
+
+
 @click.group(context_settings=dict(help_option_names=["-h", "--help"]))
+@click.version_option(version=_version(), prog_name="matrix-registration")
 @click.option(
     "--config-path", default="config.yaml", help="specifies the config file to be used"
 )
