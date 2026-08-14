@@ -1,4 +1,5 @@
 # Standard library imports...
+import hmac
 import logging
 from requests import exceptions
 import re
@@ -155,8 +156,10 @@ def get_request_ips(request):
 
 @auth.verify_token
 def verify_token(token):
-    return (
-        token != "APIAdminPassword" and token == config.config.admin_api_shared_secret
+    # Constant-time compare so the shared secret can't be recovered via a timing
+    # side-channel. The sample-config sentinel is still rejected outright.
+    return token != "APIAdminPassword" and hmac.compare_digest(
+        token, config.config.admin_api_shared_secret
     )
 
 

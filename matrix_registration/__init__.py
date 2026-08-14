@@ -1,6 +1,6 @@
 # Defined before the submodule imports below so __version__ is always available
 # even if a submodule references it during package initialization.
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 name = "matrix_registration"
 
 from . import api

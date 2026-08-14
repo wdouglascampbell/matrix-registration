@@ -205,8 +205,10 @@
     confirm_password.onkeyup = validatePassword
 
     function showError(message, dialog) {
-      document.getElementById("error_message").innerHTML = message
-      document.getElementById("error_dialog").innerHTML = dialog
+      // textContent, not innerHTML: `dialog` carries server-returned strings, so
+      // rendering it as markup would be an injection sink.
+      document.getElementById("error_message").textContent = message
+      document.getElementById("error_dialog").textContent = dialog
       let error = document.getElementById("error")
       error.classList.remove("hidden")
       hideOnClickOutside(error)
@@ -247,7 +249,8 @@
             showError("{{ translations.homeserver_error }}", response["error"])
           }
         } else {
-          document.getElementById("welcome").innerHTML = "{{ translations.welcome }} "  + response['user_id']
+          // textContent, not innerHTML: user_id comes back from the homeserver.
+          document.getElementById("welcome").textContent = "{{ translations.welcome }} "  + response['user_id']
           document.getElementById("success").classList.remove("hidden")
         }
 
