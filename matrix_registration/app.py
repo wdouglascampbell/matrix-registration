@@ -105,27 +105,35 @@ def run_server(ctx):
     default=None,
     help="expire date: in ISO-8601 format (YYYY-MM-DD)",
 )
-def generate_token(maximum, expires):
-    token = tokens.tokens.new(expiration_date=expires, max_usage=maximum)
-    print(token.name)
+@click.pass_context
+def generate_token(ctx, maximum, expires):
+    app = create_app(ctx.obj["config_path"])
+    with app.app_context():
+        tokens.tokens.load()
+        token = tokens.tokens.new(expiration_date=expires, max_usage=maximum)
+        print(token.name)
 
 
 @cli.command("status", help="view status or disable")
 @click.option("-s", "--status", default=None, help="token status")
 @click.option("-l", "--list", is_flag=True, help="list tokens")
 @click.option("-d", "--disable", default=None, help="disable token")
-def status_token(status, list, disable):
-    if disable:
-        if tokens.tokens.disable(disable):
-            print("Token disabled")
-        else:
-            print("Token couldn't be disabled")
-    elif status:
-        token = tokens.tokens.get_token(status)
-        if token:
-            print(f"This token is{' ' if token.active() else ' not '}valid")
-            print(json.dumps(token.toDict(), indent=2))
-        else:
-            print("No token with that name")
-    elif list:
-        print(tokens.tokens)
+@click.pass_context
+def status_token(ctx, status, list, disable):
+    app = create_app(ctx.obj["config_path"])
+    with app.app_context():
+        tokens.tokens.load()
+        if disable:
+            if tokens.tokens.disable(disable):
+                print("Token disabled")
+            else:
+                print("Token couldn't be disabled")
+        elif status:
+            token = tokens.tokens.get_token(status)
+            if token:
+                print(f"This token is{' ' if token.active() else ' not '}valid")
+                print(json.dumps(token.toDict(), indent=2))
+            else:
+                print("No token with that name")
+        elif list:
+            print(tokens.tokens)
